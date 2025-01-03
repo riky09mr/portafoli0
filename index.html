@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio - Rivaldo</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function App() {
+            const [page, setPage] = React.useState('home');
+
+            return (
+                <div>
+                    <nav>
+                        <button onClick={() => setPage('home')}>Inicio</button>
+                        <button onClick={() => setPage('about')}>Sobre mí</button>
+                        <button onClick={() => setPage('studens')}>Estudios</button>
+                        <button onClick={() => setPage('projects')}>Proyectos</button>
+                        <button onClick={() => setPage('contact')}>Contacto</button>
+                    </nav>
+
+                    <main>
+                        {page === 'home' && <Home />}
+                        {page === 'about' && <About />}
+                        {page === 'studens' && <Studens />}
+                        {page === 'projects' && <Projects />}
+                        {page === 'contact' && <Contact />}
+                    </main>
+                </div>
+            );
+        }
+
+        // Renderizar la aplicación
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+
+    <!-- Componentes -->
+    <script type="text/babel" src="components/Home.js"></script>
+    <script type="text/babel" src="components/About.js"></script>
+    <script type="text/babel" src="components/Studens.js"></script>
+    <script type="text/babel" src="components/Projects.js"></script>
+    <script type="text/babel" src="components/Contact.js"></script>
+</body>
+</html>
