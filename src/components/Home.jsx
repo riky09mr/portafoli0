@@ -1,4 +1,6 @@
-const Home = ({ setPage }) => {
+import React from 'react';
+
+export const Home = ({ setPage }) => {
     return (
         <div className="home-container">
         {/* Hero Section */}

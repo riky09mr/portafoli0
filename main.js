@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { Home } from './components/Home.jsx';
-import { About } from './components/About.jsx';
-import { Studens } from './components/Studens.jsx';
-import { Projects } from './components/Projects.jsx';
-import { Contact } from './components/Contact.jsx';
-import './index.css';
+import { createElement, useState } from 'react';
+import { Home } from './components/Home.js';
+import { About } from './components/About.js';
+import { Studens } from './components/studens.js';
+import { Projects } from './components/Projects.js';
+import { Contact } from './components/Contact.js';
 
 function App() {
     const [page, setPage] = useState('home');

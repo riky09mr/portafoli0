@@ -1,4 +1,6 @@
-const About = () => {
+import React, { useState, useEffect } from 'react';
+
+export const About = () => {
     // Credenciales de admin
     const ADMIN_CREDENTIALS = {
         username: 'rivaldo',
@@ -6,10 +8,10 @@ const About = () => {
     };
 
     // Estados para testimonios
-    const [testimonials, setTestimonials] = React.useState([]);
+    const [testimonials, setTestimonials] = useState([]);
 
     // Cargar testimonios al inicio
-    React.useEffect(() => {
+    useEffect(() => {
         const loadTestimonials = async () => {
             try {
                 const response = await fetch('http://localhost:5000/api/testimonials');
@@ -24,23 +26,23 @@ const About = () => {
     }, []);
 
     // Estados para el formulario
-    const [showForm, setShowForm] = React.useState(false);
-    const [formData, setFormData] = React.useState({
+    const [showForm, setShowForm] = useState(false);
+    const [formData, setFormData] = useState({
         text: '',
         author: ''
     });
-    const [editingId, setEditingId] = React.useState(null);
+    const [editingId, setEditingId] = useState(null);
 
     // Estados para admin
-    const [isAdmin, setIsAdmin] = React.useState(false);
-    const [showLoginForm, setShowLoginForm] = React.useState(false);
-    const [loginData, setLoginData] = React.useState({
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [showLoginForm, setShowLoginForm] = useState(false);
+    const [loginData, setLoginData] = useState({
         username: '',
         password: ''
     });
 
     // Estado para la trayectoria con localStorage
-    const [timeline, setTimeline] = React.useState(() => {
+    const [timeline, setTimeline] = useState(() => {
         const savedTimeline = localStorage.getItem('timeline');
         return savedTimeline ? JSON.parse(savedTimeline) : [
             {
@@ -65,22 +67,22 @@ const About = () => {
     });
 
     // Guardar en localStorage cuando timeline cambie
-    React.useEffect(() => {
+    useEffect(() => {
         localStorage.setItem('timeline', JSON.stringify(timeline));
     }, [timeline]);
 
     // Estados para el formulario de trayectoria
-    const [showTimelineForm, setShowTimelineForm] = React.useState(false);
-    const [timelineData, setTimelineData] = React.useState({
+    const [showTimelineForm, setShowTimelineForm] = useState(false);
+    const [timelineData, setTimelineData] = useState({
         title: '',
         startDate: '',
         endDate: '',
         description: ''
     });
-    const [editingTimelineId, setEditingTimelineId] = React.useState(null);
+    const [editingTimelineId, setEditingTimelineId] = useState(null);
 
     // Verificar sesión de admin
-    React.useEffect(() => {
+    useEffect(() => {
         const adminStatus = localStorage.getItem('isAdmin');
         if (adminStatus === 'true') {
             setIsAdmin(true);
@@ -525,6 +527,3 @@ const About = () => {
         </div>
     );
 };
-
-// Hacer el componente disponible globalmente
-window.About = About;

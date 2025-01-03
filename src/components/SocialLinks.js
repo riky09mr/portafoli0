@@ -1,5 +1,6 @@
+import React from 'react';
 
-const SocialLinks = () => {
+export const SocialLinks = () => {
     return (
         <div className="social-links-fixed">
             <a href="https://www.linkedin.com/in/tu-perfil" 

@@ -1,5 +1,8 @@
-const Contact = () => {
-    const [formData, setFormData] = React.useState({
+import React, { useState } from 'react';
+import emailjs from '@emailjs/browser'; // Asegúrate de tener esta dependencia instalada
+
+export const Contact = () => {
+    const [formData, setFormData] = useState({
         name: '',
         email: '',
         subject: '',
@@ -179,6 +182,3 @@ const Contact = () => {
         </div>
     );
 };
-
-// Hacer el componente disponible globalmente
-window.Contact = Contact;

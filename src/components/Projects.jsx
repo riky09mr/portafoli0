@@ -1,8 +1,9 @@
+import React, { useState } from 'react';
 
-const Projects = () => {
-    const [selectedImage, setSelectedImage] = React.useState(null);
-    const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
-    const [currentProject, setCurrentProject] = React.useState(null);
+export const Projects = () => {
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [currentProject, setCurrentProject] = useState(null);
 
     const projects = [
         {
