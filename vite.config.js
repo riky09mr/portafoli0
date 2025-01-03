@@ -13,11 +13,17 @@ export default defineConfig({
         main: path.resolve(__dirname, 'index.html'),
       },
       external: ['@emailjs/browser'], // Marca el paquete como externo
+      output: {
+        globals: {
+          '@emailjs/browser': 'emailjs'
+        }
+      }
     },
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '@emailjs/browser': '/node_modules/@emailjs/browser/dist/email.min.js',
     },
     extensions: ['.js', '.jsx'],
   },

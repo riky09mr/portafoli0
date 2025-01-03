@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
-import emailjs from '@emailjs/browser'; // Asegúrate de tener esta dependencia instalada
+import React, { useState, useEffect } from 'react';
+import emailjs from '@emailjs/browser';
 
 export const Contact = () => {
+    useEffect(() => {
+        emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+    }, []);
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -53,8 +57,8 @@ export const Contact = () => {
 
         try {
             await emailjs.send(
-                "service_cc1ds6n",
-                "template_i3ym37i",
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
                 {
                     from_name: formData.name,
                     reply_to: formData.email,
