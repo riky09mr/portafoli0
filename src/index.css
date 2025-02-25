@@ -74,29 +74,63 @@ button:focus-visible {
     padding: 20px;
 }
 nav {
-  background-color: #4a90e2;
-  padding: 1rem;
-  margin-bottom: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
 }
 
 nav button {
-  background-color: transparent;
+  background: none;
   border: none;
-  color: white;
-  padding: 8px 20px;
-  margin: 0 10px;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.8rem 1.5rem;
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 25px;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 nav button:hover {
-  background-color: #1076cf;
+  color: #7dbfe6;
+}
+
+/* Efecto de subrayado al pasar el cursor */
+nav button::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #7dbfe6;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+nav button:hover::after {
+  width: 70%;
+}
+
+/* Botón activo */
+nav button.active {
+  color: #7dbfe6;
+}
+
+nav button.active::after {
+  width: 70%;
 }
 
 main {
-  padding: 20px;
+  margin-top: 80px; /* Ajusta según la altura de tu navbar */
+  padding-top: 1rem;
 }
 
 h2 {
@@ -104,59 +138,96 @@ h2 {
 }
 
 .studies-container {
-  padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 3rem 2rem;
 }
 
 .studies-container h2 {
   text-align: center;
-  margin-bottom: 2rem;
-  color: #6775b1;
-  font-size: 2rem;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  position: relative;
+}
+
+.studies-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: #7dbfe6;
 }
 
 .certificates-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  padding: 1rem;
+  margin-top: 2rem;
 }
 
 .certificate-card {
   background: white;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(12, 37, 184, 0.1);
   overflow: hidden;
-  transition: transform 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .certificate-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .pdf-viewer {
   width: 100%;
-  height: 400px;
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
   background: #f5f5f5;
-  border-bottom: 1px solid #eee;
 }
 
 .pdf-viewer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   border: none;
+  object-fit: contain;
+}
+
+.pdf-error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+  padding: 1rem;
+  text-align: center;
 }
 
 .certificate-info {
   padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .certificate-info h3 {
-  margin: 0;
-  color: #333;
+  margin: 0 0 1rem 0;
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  color: #333;
 }
 
 .certificate-info p {
@@ -164,40 +235,49 @@ h2 {
   margin-bottom: 1rem;
 }
 
-.certificate-info .year {
+.year {
   display: inline-block;
-  background: #f0f0f0;
+  background: #e9f5ff;
+  color: #4a90e2;
   padding: 0.3rem 0.8rem;
   border-radius: 15px;
   font-size: 0.9rem;
-  color: #555;
-  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 .download-btn {
   display: inline-block;
-  background: #6775b1;
+  background: #7dbfe6;
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
   text-decoration: none;
   transition: background 0.3s ease;
+  font-size: 0.9rem;
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 .download-btn:hover {
-  background: #7dbfe6;
+  background: #4a90e2;
 }
 
-/* Responsive */
+/* Responsive - ajustes para tablets y móviles */
+@media (max-width: 992px) {
+  .certificates-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .certificates-grid {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
   
-  .pdf-viewer {
-      height: 300px;
+  .studies-container {
+    padding: 2rem 1rem;
   }
-} 
+}
 
 .projects-container {
   padding: 2rem;

@@ -10,13 +10,33 @@ import './index.css';
 function App() {
     const [page, setPage] = useState('home');
 
-    return React.createElement('div', null, [
+    return React.createElement('div', { className: 'page-container' }, [
         React.createElement('nav', { key: 'nav' }, [
-            React.createElement('button', { onClick: () => setPage('home'), key: 'home' }, 'Inicio'),
-            React.createElement('button', { onClick: () => setPage('about'), key: 'about' }, 'Sobre mí'),
-            React.createElement('button', { onClick: () => setPage('studens'), key: 'studens' }, 'Estudios'),
-            React.createElement('button', { onClick: () => setPage('projects'), key: 'projects' }, 'Proyectos'),
-            React.createElement('button', { onClick: () => setPage('contact'), key: 'contact' }, 'Contacto')
+            React.createElement('button', { 
+                onClick: () => setPage('home'), 
+                key: 'home',
+                className: page === 'home' ? 'active' : '' 
+            }, 'Inicio'),
+            React.createElement('button', { 
+                onClick: () => setPage('about'), 
+                key: 'about',
+                className: page === 'about' ? 'active' : '' 
+            }, 'Sobre mí'),
+            React.createElement('button', { 
+                onClick: () => setPage('studens'), 
+                key: 'studens',
+                className: page === 'studens' ? 'active' : '' 
+            }, 'Estudios'),
+            React.createElement('button', { 
+                onClick: () => setPage('projects'), 
+                key: 'projects',
+                className: page === 'projects' ? 'active' : '' 
+            }, 'Proyectos'),
+            React.createElement('button', { 
+                onClick: () => setPage('contact'), 
+                key: 'contact',
+                className: page === 'contact' ? 'active' : '' 
+            }, 'Contacto')
         ]),
         React.createElement('main', { key: 'main' }, [
             page === 'home' && React.createElement(Home, { key: 'home-component' }),

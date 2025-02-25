@@ -40,6 +40,12 @@ export function Studens() {
         },
     ];
 
+    // Función para manejar errores de carga de PDF
+    const handlePdfError = (e) => {
+        e.target.style.display = 'none';
+        e.target.nextElementSibling.style.display = 'block';
+    };
+
     return (
         <div className="studies-container">
             <h2>Estudios y Certificaciones</h2>
@@ -50,10 +56,12 @@ export function Studens() {
                             <iframe
                                 src={cert.pdfUrl}
                                 title={cert.title}
-                                width="100%"
-                                height="400"
                                 frameBorder="0"
+                                onError={handlePdfError}
                             ></iframe>
+                            <div className="pdf-error" style={{display: 'none'}}>
+                                <p>No se pudo cargar el PDF. <a href={cert.pdfUrl} target="_blank" rel="noopener noreferrer">Haz clic aquí para verlo</a></p>
+                            </div>
                         </div>
                         <div className="certificate-info">
                             <h3>{cert.title}</h3>
