@@ -27,4 +27,8 @@ export default defineConfig({
     },
     extensions: ['.js', '.jsx'],
   },
+  server: {
+    port: 3000, // Cambia el puerto si lo deseas
+    host: true  // Permite acceso desde la red local
+  }
 });
