@@ -4034,3 +4034,243 @@ nav button.active {
         grid-template-columns: 1fr;
     }
 }
+
+/* Correcciones para problemas de responsive en móviles */
+
+/* Asegurar que el contenedor principal ocupe todo el ancho */
+body, html {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.app-container {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Corregir el problema de la línea de carga debajo del menú */
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: none; /* Eliminar cualquier borde que pueda estar causando la línea */
+}
+
+.navbar::after {
+    content: none; /* Eliminar cualquier pseudo-elemento que pueda estar causando la línea */
+}
+
+/* Corregir el problema con los iconos de redes sociales en móvil */
+@media (max-width: 768px) {
+    .social-links {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+    
+    /* Asegurar que el contenido principal ocupe todo el ancho */
+    .main-content {
+        width: 100%;
+        padding: 0;
+        overflow-x: hidden;
+    }
+    
+    /* Ajustar el padding en secciones para evitar desbordamiento horizontal */
+    .home-container,
+    .projects-section,
+    .studies-container,
+    .contact-container,
+    .about-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+    
+    /* Eliminar cualquier margen horizontal que pueda causar scroll horizontal */
+    .hero-section,
+    .about-preview,
+    .skills-section,
+    .projects-grid,
+    .certificates-grid,
+    .university-section,
+    .certificates-section {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Ajustar el tamaño de las tarjetas para que no desborden */
+    .project-card-creative,
+    .certificate-card,
+    .university-card,
+    .skill-card {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        box-sizing: border-box;
+    }
+}
+
+/* Correcciones específicas para dispositivos muy pequeños */
+@media (max-width: 480px) {
+    /* Reducir padding adicional */
+    .home-container,
+    .projects-section,
+    .studies-container,
+    .contact-container,
+    .about-container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    /* Ajustar tamaño de fuente para mejorar legibilidad */
+    body {
+        font-size: 14px;
+    }
+    
+    /* Asegurar que las imágenes no desborden */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Eliminar cualquier animación que pueda causar problemas */
+    .animate-in {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    /* Ajustar el navbar para dispositivos pequeños */
+    .navbar-container {
+        padding: 0.5rem;
+    }
+    
+    /* Asegurar que el menú móvil no cause scroll horizontal */
+    .mobile-menu {
+        width: 100vw;
+        max-width: 100vw;
+        left: 0;
+        right: 0;
+    }
+}
+
+/* Eliminar la línea de carga que aparece debajo del menú */
+.loading-bar,
+.progress-bar,
+.loader {
+    display: none !important;
+}
+
+/* Asegurar que no haya elementos que causen scroll horizontal */
+* {
+    max-width: 100vw;
+    box-sizing: border-box;
+}
+
+/* Corrección específica para el problema del espacio en blanco en móviles */
+
+/* Asegurar que el fondo se extienda completamente */
+body, html, #root {
+    background-color: var(--navy-blue);
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Asegurar que el contenedor principal ocupe todo el espacio */
+.app-container, .main-content {
+    background-color: var(--navy-blue);
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Corregir específicamente el problema con los iconos sociales en móvil */
+@media (max-width: 768px) {
+    /* Hacer que la sección hero tenga altura mínima para evitar espacios */
+    .hero-section {
+        min-height: 100vh;
+        grid-template-columns: 1fr;
+        padding-bottom: 4rem;
+        background-color: var(--navy-blue);
+    }
+    
+    /* Ajustar el contenedor de la imagen para que no deje espacio */
+    .hero-image {
+        margin-top: 2rem;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+    /* Ajustar los iconos sociales para que no causen espacio en blanco */
+    .social-links {
+        margin-top: 2rem;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        background-color: var(--navy-blue);
+    }
+    
+    /* Asegurar que las secciones siguientes no tengan espacio en blanco */
+    .about-preview {
+        margin-top: 0;
+        padding-top: 4rem;
+        background-color: var(--navy-blue);
+    }
+    
+    /* Eliminar cualquier margen o padding que pueda causar espacios */
+    .hero-content, .about-content, .skills-section {
+        margin-bottom: 0;
+        padding-bottom: 2rem;
+        background-color: var(--navy-blue);
+    }
+    
+    /* Asegurar que no haya espacios entre secciones */
+    section {
+        margin-bottom: 0;
+        padding-bottom: 4rem;
+        background-color: var(--navy-blue);
+    }
+    
+    /* Forzar el color de fondo en todo el contenido */
+    .home-container, 
+    .projects-section, 
+    .studies-container, 
+    .contact-container, 
+    .about-container {
+        background-color: var(--navy-blue);
+    }
+}
+
+/* Corrección para dispositivos muy pequeños */
+@media (max-width: 480px) {
+    /* Reducir aún más los espacios */
+    .hero-section {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    
+    .social-links {
+        margin-top: 1.5rem;
+    }
+    
+    /* Ajustar el espacio entre secciones */
+    section {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+}
