@@ -11,24 +11,10 @@ export const Home = ({ setPage }) => {
                 <p className="hero-description">
                     Creando soluciones digitales innovadoras y experiencias web únicas
                 </p>
-                <div className="cta-buttons">
-                    <button 
-                        onClick={() => setPage('projects')}
-                        className="cta-primary"
-                    >
-                        Ver Proyectos
-                    </button>
-                    <button 
-                        onClick={() => setPage('contact')}
-                        className="cta-secondary"
-                    >
-                        Contactar
-                    </button>
-                </div>
             </div>
             <div className="hero-image">
                 <img 
-                    src="/imagenes/alquiler/naruto-baryon.jpg" 
+                    src="/WhatsApp Image 2025-03-01 at 13.01.56.jpeg" 
                     alt="Rivaldo Zárate" 
                     className="profile-img"
                 />

@@ -49,35 +49,48 @@ export function Studens() {
     return (
         <div className="studies-container">
             <h2>Estudios y Certificaciones</h2>
-            <div className="certificates-grid">
-                {certificates.map((cert, index) => (
-                    <div key={index} className="certificate-card">
-                        <div className="pdf-viewer">
-                            <iframe
-                                src={cert.pdfUrl}
-                                title={cert.title}
-                                frameBorder="0"
-                                onError={handlePdfError}
-                            ></iframe>
-                            <div className="pdf-error" style={{display: 'none'}}>
-                                <p>No se pudo cargar el PDF. <a href={cert.pdfUrl} target="_blank" rel="noopener noreferrer">Haz clic aquí para verlo</a></p>
+            <div className="studies-grid">
+                <div className="studies-text">
+                    <h1 className="studies-title" style={{textAlign: 'center'}}>Universidad</h1>
+                    <p className="studies-description" style={{textAlign: 'center'}}>
+                        Licenciatura en Analisis de Sistemas Informaticos en la Universidad Catolica de Nuestra Señora de la Asuncion unidad pedagogica de la ciudad de Carapegua.
+                    </p>
+                </div>
+            </div>
+            <div className="studies-grid">
+                <div className="studies-text">
+                    <h1 className="studies-title" style={{textAlign: 'center'}}>Certificaciones</h1>
+                        <div className="certificates-grid">
+                        {certificates.map((cert, index) => (
+                            <div key={index} className="certificate-card">
+                                <div className="pdf-viewer">
+                                    <iframe
+                                        src={cert.pdfUrl}
+                                        title={cert.title}
+                                        frameBorder="0"
+                                        onError={handlePdfError}
+                                    ></iframe>
+                                    <div className="pdf-error" style={{display: 'none'}}>
+                                        <p>No se pudo cargar el PDF. <a href={cert.pdfUrl} target="_blank" rel="noopener noreferrer">Haz clic aquí para verlo</a></p>
+                                    </div>
+                                </div>
+                                <div className="certificate-info">
+                                    <h3>{cert.title}</h3>
+                                    <p>{cert.description}</p>
+                                    <span className="year">{cert.year}</span>
+                                    <a 
+                                        href={cert.pdfUrl} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="download-btn"
+                                    >
+                                        Ver PDF completo
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div className="certificate-info">
-                            <h3>{cert.title}</h3>
-                            <p>{cert.description}</p>
-                            <span className="year">{cert.year}</span>
-                            <a 
-                                href={cert.pdfUrl} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="download-btn"
-                            >
-                                Ver PDF completo
-                            </a>
-                        </div>
+                        ))}
                     </div>
-                ))}
+                </div>
             </div>
         </div>
     );
