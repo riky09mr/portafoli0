@@ -47,20 +47,20 @@ export const About = () => {
         return savedTimeline ? JSON.parse(savedTimeline) : [
             {
                 id: 1,
-                title: "Desarrollador Full Stack - Empresa XYZ",
-                period: "2021 - Presente",
-                description: "Lideré proyectos de desarrollo web usando React y Node.js, optimizando la experiencia de usuario en aplicaciones de alto impacto."
+                title: "Desarrollador y Help Desk",
+                period: "2024 - Presente",
+                description: "Brindo soporte técnico al cliente interno, resolviendo problemas y proporcionando soluciones. Realicé correcciones y mejoras en módulos existentes, además de desarrollar nuevos módulos para optimizar la gestión interna del sistema, incluyendo la administración de facturas, asientos contables, cobranzas, préstamos y contratos. Al desempeñar ambas funciones, me resulta más fácil realizar relevamientos y coordinar mejoras con otros desarrolladores, asegurando una implementación eficiente de las actualizaciones necesarias."
             },
             {
                 id: 2,
-                title: "Diseñador UX/UI - Startup ABC",
-                period: "2019 - 2021",
-                description: "Diseñé interfaces centradas en el usuario utilizando Figma y metodologías ágiles, logrando aumentar la retención de usuarios en un 30%."
+                title: "Auxiliar Contable",
+                period: "2022 - 2023",
+                description: "Ingreso y actualización de datos contables en el sistema, así como organización y archivo de documentación financiera (facturas, recibos, comprobantes)."
             },
             {
                 id: 3,
-                title: "Estudiante - Ingeniería en Computación",
-                period: "2015 - 2019",
+                title: "Estudiante - Licenciatura en Analisis de Sistemas",
+                period: "2020 - 2024",
                 description: "Durante mi carrera, aprendí los fundamentos del desarrollo web y participé en proyectos académicos que fortalecieron mi pasión por la tecnología."
             }
         ];
@@ -261,7 +261,7 @@ export const About = () => {
                         className="admin-login-btn"
                         onClick={() => setShowLoginForm(true)}
                     >
-                        <i className="fas fa-lock"></i>
+                        {/* <i className="fas fa-lock"></i> */}
                     </button>
                 )}
             </div>
@@ -270,7 +270,7 @@ export const About = () => {
             <section className="about-intro">
                 <h1>Sobre mí</h1>
                 <p>
-                    Soy Rivaldo Zárate, un desarrollador Full Stack con experiencia en 
+                    Soy Rivaldo Zárate, un desarrollador con experiencia en 
                     construir aplicaciones web innovadoras y diseñar interfaces intuitivas. 
                     Mi pasión por la tecnología y el diseño me permite conectar creatividad 
                     con funcionalidad para resolver problemas reales.
@@ -279,127 +279,29 @@ export const About = () => {
 
             {/* Timeline de experiencia */}
             <section className="experience-timeline">
-                <div className="section-header">
-                    <h2>Mi Trayectoria {isAdmin && (
-                        <button 
-                            className="add-timeline-btn"
-                            onClick={() => {
-                                setEditingTimelineId(null);
-                                setTimelineData({ title: '', startDate: '', endDate: '', description: '' });
-                                setShowTimelineForm(true);
-                            }}
-                        >
-                            <i className="fas fa-plus"></i>
-                        </button>
-                    )}</h2>
-                </div>
-
+                <h2>Mi Trayectoria</h2>
+                
                 <div className="timeline">
                     {[...timeline]
                         .sort((a, b) => {
-                            // Obtener la fecha de inicio de cada elemento
                             const getStartDate = (period) => {
                                 const startStr = period.split(' - ')[0];
                                 return new Date(startStr);
                             };
-                            
-                            // Ordenar de más reciente a más antiguo
                             return getStartDate(b.period) - getStartDate(a.period);
                         })
                         .map(item => (
                             <div key={item.id} className="timeline-item">
                                 <div className="timeline-content">
-                                    <h3>{item.title}</h3>
-                                    <span className="timeline-date">{item.period}</span>
+                                    <div className="timeline-header">
+                                        <h3>{item.title}</h3>
+                                        <span className="timeline-date">{item.period}</span>
+                                    </div>
                                     <p>{item.description}</p>
-                                    {isAdmin && (
-                                        <div className="timeline-actions">
-                                            <button 
-                                                onClick={() => handleTimelineEdit(item)}
-                                                className="edit-btn"
-                                            >
-                                                <i className="fas fa-edit"></i>
-                                            </button>
-                                            <button 
-                                                onClick={() => handleTimelineDelete(item.id)}
-                                                className="delete-btn"
-                                            >
-                                                <i className="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    )}
                                 </div>
                             </div>
                         ))}
                 </div>
-
-                {/* Formulario de Trayectoria */}
-                {showTimelineForm && (
-                    <div className="modal-container">
-                        <form onSubmit={handleTimelineSubmit} className="timeline-form">
-                            <h3>{editingTimelineId ? 'Editar Experiencia' : 'Nueva Experiencia'}</h3>
-                            <input
-                                type="text"
-                                value={timelineData.title}
-                                onChange={(e) => setTimelineData({
-                                    ...timelineData,
-                                    title: e.target.value
-                                })}
-                                placeholder="Título del puesto"
-                                required
-                            />
-                            <div className="date-inputs">
-                                <div className="date-field">
-                                    <label>Fecha de inicio:</label>
-                                    <input
-                                        type="month"
-                                        value={timelineData.startDate}
-                                        onChange={(e) => setTimelineData({
-                                            ...timelineData,
-                                            startDate: e.target.value
-                                        })}
-                                        required
-                                    />
-                                </div>
-                                <div className="date-field">
-                                    <label>Fecha de fin:</label>
-                                    <input
-                                        type="month"
-                                        value={timelineData.endDate}
-                                        onChange={(e) => setTimelineData({
-                                            ...timelineData,
-                                            endDate: e.target.value
-                                        })}
-                                        placeholder="Dejar vacío si es actual"
-                                    />
-                                </div>
-                            </div>
-                            <textarea
-                                value={timelineData.description}
-                                onChange={(e) => setTimelineData({
-                                    ...timelineData,
-                                    description: e.target.value
-                                })}
-                                placeholder="Descripción de tus responsabilidades..."
-                                required
-                            />
-                            <div className="form-buttons">
-                                <button type="submit">
-                                    {editingTimelineId ? 'Guardar Cambios' : 'Agregar'}
-                                </button>
-                                <button 
-                                    type="button" 
-                                    onClick={() => {
-                                        setShowTimelineForm(false);
-                                        setEditingTimelineId(null);
-                                    }}
-                                >
-                                    Cancelar
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                )}
             </section>
         </div>
     );
